@@ -17,7 +17,26 @@ The only counterpart is the lack of a USB-C port but I can live with that...
 There's a dedicated bios update which allows to set the nvme device mode to ahci, thus allows to install linux; download and follow instructions here: https://forums.lenovo.com/t5/Lenovo-Yoga-Series-Notebooks/Yoga-900-and-Ideapad-710S-Linux-Only-BIOS/ta-p/3466850
 
 ## Hardware
-- Disk 256 GB: Samsung PM951 NVME MZVLV256  - M.2 2281
+- Disk 256 GB: Samsung PM951 NVME MZVLV256 - M.2 2281
+- Wifi: Intel® Dual Band Wireless-AC 3165 - M.2 2230
+
+inxi return:
+```
+$ inxi -Abd
+System:    Host: 710s Kernel: 4.4.0-51-generic x86_64 (64 bit) Desktop: Unity 7.4.0  Distro: Ubuntu 16.04 xenial
+Machine:   System: LENOVO (portable) product: 80VQ v: Lenovo ideapad 710S-13IKB
+           Mobo: LENOVO model: Lenovo ideapad 710S-13IKB v: SDK0J40709 WIN
+           Bios: LENOVO v: 3HCN12S2 date: 10/07/2016
+CPU:       Dual core Intel Core i7-7500U (-HT-MCP-) speed/max: 400/2701 MHz
+Graphics:  Card: Intel Device 5916
+           Display Server: X.Org 1.18.4 drivers: intel (unloaded: fbdev,vesa) Resolution: 1920x1080@60.02hz
+           GLX Renderer: Mesa DRI Intel Kabylake GT2 GLX Version: 3.0 Mesa 11.2.0
+Audio:     Card Intel Device 9d71 driver: snd_hda_intel Sound: ALSA v: k4.4.0-51-generic
+Network:   Card: Intel Intel Dual Band Wireless-AC 3165 Plus Bluetooth driver: iwlwifi
+Drives:    HDD Total Size: NA (-) ID-1: /dev/nvme0n1 model: N/A size: 256.1GB
+           Optical: No optical drives detected.
+Info:      Processes: 219 Uptime: 25 min Memory: 1022.8/7876.4MB Client: Shell (bash) inxi: 2.2.35
+```
 
 ## Audio
 The audio work unstable on stock install with kernel 4.4.0-51. That is, the audio sometime work and sometime doesn’t on reboot and never after suspend.

@@ -14,7 +14,7 @@ Here are the elements which push the buy for this device:
 The only counterpart is the lack of a USB-C port but I can live with that...
 
 ## Requirment
-There's a dedicated bios update which allows to set the nvme device mode to ahci.
+There's a dedicated bios update which allows to set the nvme device mode to ahci, thus allows to install linux; download and follow instructions here: https://forums.lenovo.com/t5/Lenovo-Yoga-Series-Notebooks/Yoga-900-and-Ideapad-710S-Linux-Only-BIOS/ta-p/3466850
 
 ## Hardware
 - Disk 256 GB: Samsung PM951 NVME MZVLV256  - M.2 2281

@@ -13,7 +13,7 @@ Here are the elements which push the buy for this device:
 
 The only counterpart is the lack of a USB-C port but I can live with that...
 
-## Requirment
+## Requirement
 There's a dedicated bios update which allows to set the nvme device mode to ahci, thus allows to install linux; download and follow instructions here: https://forums.lenovo.com/t5/Lenovo-Yoga-Series-Notebooks/Yoga-900-and-Ideapad-710S-Linux-Only-BIOS/ta-p/3466850
 
 ## Hardware
@@ -43,7 +43,7 @@ The audio work unstable on stock install with kernel 4.4.0-51. That is, the audi
 
 Solving this issue requires to install the latest version of ALSA driver and disable secure boot.
 
-Install latest ALSA driver:
+### Install latest ALSA driver
 ```
 $ sudo apt-add-repository ppa:ubuntu-audio-dev/alsa-daily
 $ sudo apt-get update
@@ -51,7 +51,7 @@ $ sudo apt-get install oem-audio-hda-daily-dkms
 ```
 Shutdown, wait at least 10 secondes and then power on.
 
-Disable secure boot:
+### Disable secure boot
 Disabling secure boot in UEFI bios successfully allows to load the snd-hda-intel module.
 (source: http://askubuntu.com/a/762255)
 
@@ -72,7 +72,8 @@ Now, is that option safe to use is still a question that I should sort out becau
 All features of the touchpad works out of the box but I found that the touchpad move speed was a bit slow. So digging with xinput I could change the 'AlpsPS/2 ALPS DualPoint TouchPad' device 'Move Speed' parameter which output initialy the following output:
 Synaptics Move Speed (277): 1.000000, 1.750000, 0.043687, 0.000000
 
-The third value correpond to the 'AccelFactor' option which I set to 0.100000 which appear better to my taste. To set that permanently edit the /usr/share/X11/xorg.conf.d/50-synaptics.conf file so that it look like the followiing:
+The third value correpond to the 'AccelFactor' option which I set to 0.100000 which appear better to my taste. To set that permanently edit the /usr/share/X11/xorg.conf.d/50-synaptics.conf file so that it look like the following:
+```
 Section "InputClass"
         Identifier "touchpad catchall"
         Driver "synaptics"
@@ -85,6 +86,7 @@ Section "InputClass"
       # Custom 710s (# was 0.043687)
       Option "AccelFactor" "0.100000"
 EndSection
+```
 
 Reference: ftp://www.x.org/pub/X11R7.5/doc/man/man4/synaptics.4.html
 

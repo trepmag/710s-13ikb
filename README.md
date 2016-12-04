@@ -1,6 +1,6 @@
-# 710s 13ikb linux
+# Lenovo ideapad 710S-13IKB linux
 
-Linux is working well on this device. At least with Ubuntu 16.04 and Linux mint 18.
+Linux is working well on this device, at least with Ubuntu 16.04 and Linux mint 18. Audio need the installation of the latest ALSA driver to work correctly (See instruction bellow).
 
 I quickly tried Ununtu 16.10 which boot successfully from the live disk but once installed the machine refused to boot from; didn't digg at all into this issue.
 
@@ -18,6 +18,23 @@ There's a dedicated bios update which allows to set the nvme device mode to ahci
 
 ## Hardware
 - Disk 256 GB: Samsung PM951 NVME MZVLV256  - M.2 2281
+
+## Audio
+The audio work unstable on stock install with kernel 4.4.0-51. That is, the audio sometime work and sometime doesn’t on reboot and never after suspend.
+
+Solving this issue requires to install the latest version of ALSA driver and disable secure boot.
+
+Install latest ALSA driver:
+```
+$ sudo apt-add-repository ppa:ubuntu-audio-dev/alsa-daily
+$ sudo apt-get update
+$ sudo apt-get install oem-audio-hda-daily-dkms
+```
+Shutdown, wait at least 10 secondes and then power on.
+
+Disable secure boot:
+Disabling secure boot in UEFI bios successfully allows to load the snd-hda-intel module.
+(source: http://askubuntu.com/a/762255)
 
 ## Customisation
 

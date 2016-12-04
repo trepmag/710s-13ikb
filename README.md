@@ -24,6 +24,12 @@ There's a dedicated bios update which allows to set the nvme device mode to ahci
 ### NVME optimization
 I was very disapointed at first when I quickly compare the write performance with the device I was switching from. Indeed, for a given mysql dump inport I found that the new device was taking twice the time.
 Digging into this issue I found that the nobarrier mount option of ext4 (https://www.kernel.org/doc/Documentation/filesystems/ext4.txt) reduce that particular import from 6 minutes to 17 secondes. Following this find I setted that option to the old device and could optimize that import time from 3 minutes to 45 secondes.
+
+Add nobarrier to /etc/fstab example:
+```
+UUID=8d502364-56dc-45de-xd3c-956ad2941e65 /               ext4    nobarrier,errors=remount-ro 0       1
+```
+
 Now, is that option safe to use is still a question that I should sort out because I couldn't deternine if the disk is battery-backed. Either as a feature of the disk because or because a labtop is battery backed up by nature.
 
 ### Touchpads
@@ -45,3 +51,16 @@ Section "InputClass"
 EndSection
 
 Reference: ftp://www.x.org/pub/X11R7.5/doc/man/man4/synaptics.4.html
+
+### Others
+
+#### Swappiness
+Swappiness is set to 60 by default:
+```
+$ cat /proc/sys/vm/swappiness
+```
+
+We can reduce this as we are using an SSD type disk with the following then reboot:
+```
+echo vm.swappiness=20 | sudo tee -a /etc/sysctl.conf
+```

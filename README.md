@@ -1,6 +1,6 @@
 # Lenovo ideapad 710S-13IKB linux
 
-Linux is working well on this device, at least with Ubuntu 16.04 and Linux mint 18. Audio need the installation of the latest ALSA driver to work correctly (See instruction bellow).
+Linux is working well on this device, at least with Ubuntu 16.04 and Linux mint 18.  ~~Audio need the installation of the latest ALSA driver to work correctly (See instruction bellow).~~ Audio seems to work out of the box since kernel 4.4.0-62 as with Ubuntu 16.04.2 (kernel 4.8.0-39).
 
 I quickly tried Ununtu 16.10 which boot successfully from the live disk but once installed the machine refused to boot from; didn't digg at all into this issue.
 
@@ -41,7 +41,9 @@ Info:      Processes: 219 Uptime: 25 min Memory: 1022.8/7876.4MB Client: Shell
 ## Audio
 The audio work unstable on stock install with kernel 4.4.0-51. That is, the audio sometime work and sometime doesn’t on reboot and never after suspend.
 
-Solving this issue requires to install the latest version of ALSA driver and disable secure boot.
+Solving this issue requires to install the latest version of ALSA driver and disable secure boot
+
+Update: it looks like this issue isn't present since kernel 4.4.0-62 and installing the latest ALSA driver isn't necessary anymore. Disabling secure boot might be still required.
 
 ### Install latest ALSA driver
 ```

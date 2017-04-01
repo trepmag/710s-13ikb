@@ -57,6 +57,47 @@ Shutdown, wait at least 10 secondes and then power on.
 Disabling secure boot in UEFI bios successfully allows to load the snd-hda-intel module.
 (source: http://askubuntu.com/a/762255)
 
+## Fn keys
+Function keys all works out of the box but the microphone muting switch Fn+F4.
+
+### Microphone Fn key
+To switch the microphone muting one can submit the following instruction:
+```
+$ /usr/bin/xdotool key XF86AudioMicMute
+```
+
+Unfortunately, I couldn't add this command in the system settings keyboard shortcuts as the Fn+F4 isn't detected there... 
+
+#### ACPI events
+Instead, using acpi avents I could trigger the above commande successfully; here is how:
+
+A. Find the acpi event related to the Fn+F4
+
+Run `acpi_listen` and hit Fn+F4:
+```
+$ acpi_listen 
+button/micmute MICMUTE 00000080 00000000 K
+```
+
+B. Read the above event and define which script to trigger
+
+Create a new file as /etc/acpi/events/lenovo-mutemic:
+```
+event=button/micmute MICMUTE 00000080 00000000 K
+action=/etc/acpi/lenovo-mutemic.sh
+```
+
+C. Add the triggered script
+
+Create a new file as /etc/acpi/lenovo-mutemic.sh:
+```
+#!/bin/sh
+USER=marcusgarvey
+export XAUTHORITY=/home/$USER/.Xauthority
+export DISPLAY=:0.0
+/usr/bin/xdotool key XF86AudioMicMute
+```
+
 ## Customisation
 
 ### NVME optimization

@@ -7,7 +7,7 @@ I quickly tried Ununtu 16.10 which boot successfully from the live disk but once
 ## Key features
 Here are the elements which push the buy for this device:
 - Full HD matte screen (don't need touch screen and neither to see my face in a mirror)
-- No unremovable cabs (wink to XPS 13)
+- No unremovable Adaptive Brightness Control (CABC) (wink to XPS 13)
 - light weight: 1.2Kg
 - Low price: (XPS 13 is more than 25% expensiver)
 

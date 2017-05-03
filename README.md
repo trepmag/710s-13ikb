@@ -98,7 +98,7 @@ export DISPLAY=:0.0
 /usr/bin/xdotool key XF86AudioMicMute
 ```
 
-## Customisation
+## Customization
 
 ### NVME optimization
 I was very disapointed at first when I quickly compare the write performance with the device I was switching from. Indeed, for a given mysql dump inport I found that the new device was taking twice the time.
@@ -110,6 +110,22 @@ UUID=8d502364-56dc-45de-xd3c-956ad2941e65 /               ext4    nobarrier,erro
 ```
 
 Now, is that option safe to use is still a question that I should sort out because I couldn't deternine if the disk is battery-backed. Either as a feature of the disk because or because a labtop is battery backed up by nature.
+
+### DRI3
+
+It appears that DRI3 Xorg feature isn't enabled by default; to enable it add the following into /etc/X11/xorg.conf:
+```
+Section "Device"
+   Identifier  "Intel Graphics"
+   Driver      "intel"
+   Option      "DRI" "3"
+EndSection
+```
+
+#### Chromium slow down on multiple workspaces
+Enabling DRI3 aslo solve the slow down issue with Chromium when multiple of its windows are used on different workspaces: https://bugs.chromium.org/p/chromium/issues/detail?id=683486#c31
+
+Alternatively, this isssue can also be resolved by setting the LIBGL_DRI3_DISABLE environment variable.
 
 ### Touchpads
 All features of the touchpad works out of the box but I found that the touchpad move speed was a bit slow. So digging with xinput I could change the 'AlpsPS/2 ALPS DualPoint TouchPad' device 'Move Speed' parameter which output initialy the following output:
@@ -133,9 +149,7 @@ EndSection
 
 Reference: ftp://www.x.org/pub/X11R7.5/doc/man/man4/synaptics.4.html
 
-### Others
-
-#### Swappiness
+### Swappiness
 Swappiness is set to 60 by default:
 ```
 $ cat /proc/sys/vm/swappiness

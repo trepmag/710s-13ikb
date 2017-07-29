@@ -150,12 +150,12 @@ EndSection
 Reference: ftp://www.x.org/pub/X11R7.5/doc/man/man4/synaptics.4.html
 
 ### Swappiness
-Swappiness is set to 60 by default:
+Swappiness was set to 60 by default:
 ```
 $ cat /proc/sys/vm/swappiness
 ```
 
-We can reduce this as we are using an SSD type disk with the following then reboot:
+We can reduce this value as mentioned in this [SwapFaq](https://help.ubuntu.com/community/SwapFaq#What_is_swappiness_and_how_do_I_change_it.3F):
 ```
-echo vm.swappiness=20 | sudo tee -a /etc/sysctl.conf
+echo vm.swappiness=10 | sudo tee -a /etc/sysctl.conf
 ```
